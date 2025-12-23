@@ -1,0 +1,185 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the AutoMechanic.AI application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user entity."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "First name of the user."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Last name of the user."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the user account was created.",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp indicating when the user account was last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Login": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Login",
+      "type": "object",
+      "description": "Represents a user login attempt.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the login attempt."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User. (Relationship: User 1:N Login)"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of the login attempt.",
+          "format": "date-time"
+        },
+        "successful": {
+          "type": "boolean",
+          "description": "Indicates whether the login attempt was successful."
+        },
+        "ipAddress": {
+          "type": "string",
+          "description": "IP address from which the login attempt originated."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "timestamp",
+        "successful",
+        "ipAddress"
+      ]
+    },
+    "Signup": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Signup",
+      "type": "object",
+      "description": "Represents a user signup event.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the signup event."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to the User. (Relationship: User 1:N Signup)"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of the signup event.",
+          "format": "date-time"
+        },
+        "ipAddress": {
+          "type": "string",
+          "description": "IP address from which the signup originated."
+        },
+        "referralSource": {
+          "type": "string",
+          "description": "Source from which the user was referred (e.g., advertisement, referral link)."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "timestamp",
+        "ipAddress"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles. Accessible only by the user themselves or admins (if roles are implemented).",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/logins/{loginId}",
+        "definition": {
+          "entityName": "Login",
+          "schema": {
+            "$ref": "#/backend/entities/Login"
+          },
+          "description": "Stores login attempts for each user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "loginId",
+              "description": "The unique identifier of the login attempt."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/signups/{signupId}",
+        "definition": {
+          "entityName": "Signup",
+          "schema": {
+            "$ref": "#/backend/entities/Signup"
+          },
+          "description": "Stores signup information for each user.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "signupId",
+              "description": "The unique identifier of the signup."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "This Firestore structure is designed to securely store user login and signup information in AutoMechanic.AI. It emphasizes authorization independence and clarity for security rules. We leverage path-based ownership to control access to user-specific data. The structure separates data with different access requirements into distinct collections, ensuring a homogeneous security posture within each collection. Specifically, the `/users/{userId}/logins/{loginId}` and `/users/{userId}/signups/{signupId}` paths allow for efficient retrieval and management of login and signup data associated with a specific user. This approach avoids the need for complex authorization logic based on parent document data, simplifying security rules and enabling atomic operations. No denormalization is needed because we use path based ownership and DBAC (Database Backed Access Control)"
+  }
+}

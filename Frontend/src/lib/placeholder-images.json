@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-image",
+      "description": "AI and vehicle concept illustration",
+      "imageUrl": "https://images.unsplash.com/photo-1658243762621-95b2c50e9683?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyb2JvdCUyMGNhcnxlbnwwfHx8fDE3NjYyNjE4OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "robot car"
+    },
+    {
+      "id": "tutorial-oil-change",
+      "description": "Oil change tutorial thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1590227763209-821c686b932f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbmdpbmUlMjBvaWx8ZW58MHx8fHwxNzY2MjYxODkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "engine oil"
+    },
+    {
+      "id": "tutorial-brake-pads",
+      "description": "Brake pad replacement tutorial thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1613214150384-14921ff659b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxicmFrZSUyMGRpc2N8ZW58MHx8fHwxNzY2MTU1NTU4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "brake disc"
+    },
+    {
+      "id": "tutorial-tire-rotation",
+      "description": "Tire rotation tutorial thumbnail",
+      "imageUrl": "https://images.unsplash.com/photo-1584678605009-207acc577594?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FyJTIwdGlyZXxlbnwwfHx8fDE3NjYyNjEzNTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "car tire"
+    }
+  ]
+}

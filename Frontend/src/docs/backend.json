@@ -1,0 +1,381 @@
+{
+  "entities": {
+    "Vehicle": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Vehicle",
+      "type": "object",
+      "description": "Represents a vehicle owned by a user.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Vehicle entity."
+        },
+        "userProfileId": {
+          "type": "string",
+          "description": "Reference to UserProfile. (Relationship: UserProfile 1:N Vehicle)"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of vehicle (Bike or Car)."
+        },
+        "brand": {
+          "type": "string",
+          "description": "Vehicle brand."
+        },
+        "model": {
+          "type": "string",
+          "description": "Vehicle model."
+        },
+        "year": {
+          "type": "number",
+          "description": "Vehicle year."
+        },
+        "mileage": {
+          "type": "number",
+          "description": "Current mileage of the vehicle."
+        }
+      },
+      "required": [
+        "id",
+        "userProfileId",
+        "type",
+        "brand",
+        "model",
+        "year",
+        "mileage"
+      ]
+    },
+    "AnalysisReport": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AnalysisReport",
+      "type": "object",
+      "description": "Represents the analysis report generated for a vehicle.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the AnalysisReport entity."
+        },
+        "vehicleId": {
+          "type": "string",
+          "description": "Reference to Vehicle. (Relationship: Vehicle 1:N AnalysisReport)"
+        },
+        "reportDate": {
+          "type": "string",
+          "description": "Date and time when the report was generated.",
+          "format": "date-time"
+        },
+        "vehicleHealthScore": {
+          "type": "number",
+          "description": "Overall health score of the vehicle."
+        },
+        "detectedIssues": {
+          "type": "array",
+          "description": "A list of detected issues IDs.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommendedFixes": {
+          "type": "array",
+          "description": "A list of recommended fix IDs.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sparePartSuggestions": {
+          "type": "array",
+          "description": "A list of spare part suggestions IDs.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "videoTutorials": {
+          "type": "array",
+          "description": "A list of video tutorial IDs.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "maintenanceRoadmap": {
+          "type": "array",
+          "description": "A list of maintenance roadmap IDs.",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "vehicleId",
+        "reportDate",
+        "vehicleHealthScore",
+        "detectedIssues",
+        "recommendedFixes",
+        "sparePartSuggestions",
+        "videoTutorials",
+        "maintenanceRoadmap"
+      ]
+    },
+    "Issue": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Issue",
+      "type": "object",
+      "description": "Represents a detected issue in the vehicle.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Issue entity."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the detected issue."
+        },
+        "severity": {
+          "type": "string",
+          "description": "Severity of the issue (e.g., Low, Medium, High)."
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "severity"
+      ]
+    },
+    "Fix": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Fix",
+      "type": "object",
+      "description": "Represents a recommended fix for a detected issue.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Fix entity."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the recommended fix."
+        },
+        "estimatedCost": {
+          "type": "number",
+          "description": "Estimated cost of the fix."
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "estimatedCost"
+      ]
+    },
+    "SparePart": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "SparePart",
+      "type": "object",
+      "description": "Represents a spare part suggestion.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the SparePart entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the spare part."
+        },
+        "platform": {
+          "type": "string",
+          "description": "Platform where the spare part is available."
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of the spare part."
+        },
+        "rating": {
+          "type": "number",
+          "description": "Rating of the spare part."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "platform",
+        "price",
+        "rating"
+      ]
+    },
+    "VideoTutorial": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "VideoTutorial",
+      "type": "object",
+      "description": "Represents a video tutorial.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the VideoTutorial entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the video tutorial."
+        },
+        "url": {
+          "type": "string",
+          "description": "URL of the video tutorial.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url"
+      ]
+    },
+    "RoadmapStep": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "RoadmapStep",
+      "type": "object",
+      "description": "Represents a step in the maintenance roadmap.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the RoadmapStep entity."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the step."
+        },
+        "stepNumber": {
+          "type": "number",
+          "description": "Step number in the roadmap."
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "stepNumber"
+      ]
+    }
+  },
+  "auth": {
+    "providers": []
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/vehicles/{vehicleId}",
+        "definition": {
+          "entityName": "Vehicle",
+          "schema": {
+            "$ref": "#/backend/entities/Vehicle"
+          },
+          "description": "Stores vehicles.",
+          "params": [
+            {
+              "name": "vehicleId",
+              "description": "The unique identifier for the vehicle."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/vehicles/{vehicleId}/analysisReports/{reportId}",
+        "definition": {
+          "entityName": "AnalysisReport",
+          "schema": {
+            "$ref": "#/backend/entities/AnalysisReport"
+          },
+          "description": "Stores analysis reports for a specific vehicle.",
+          "params": [
+            {
+              "name": "vehicleId",
+              "description": "The unique identifier for the vehicle."
+            },
+            {
+              "name": "reportId",
+              "description": "The unique identifier for the analysis report."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/issues/{issueId}",
+        "definition": {
+          "entityName": "Issue",
+          "schema": {
+            "$ref": "#/backend/entities/Issue"
+          },
+          "description": "Stores detected issues, which are available to all users.",
+          "params": [
+            {
+              "name": "issueId",
+              "description": "The unique identifier for the issue."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/fixes/{fixId}",
+        "definition": {
+          "entityName": "Fix",
+          "schema": {
+            "$ref": "#/backend/entities/Fix"
+          },
+          "description": "Stores recommended fixes, which are available to all users.",
+          "params": [
+            {
+              "name": "fixId",
+              "description": "The unique identifier for the fix."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/spareParts/{sparePartId}",
+        "definition": {
+          "entityName": "SparePart",
+          "schema": {
+            "$ref": "#/backend/entities/SparePart"
+          },
+          "description": "Stores spare part suggestions, which are available to all users.",
+          "params": [
+            {
+              "name": "sparePartId",
+              "description": "The unique identifier for the spare part."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/videoTutorials/{tutorialId}",
+        "definition": {
+          "entityName": "VideoTutorial",
+          "schema": {
+            "$ref": "#/backend/entities/VideoTutorial"
+          },
+          "description": "Stores video tutorials, which are available to all users.",
+          "params": [
+            {
+              "name": "tutorialId",
+              "description": "The unique identifier for the video tutorial."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roadmapSteps/{stepId}",
+        "definition": {
+          "entityName": "RoadmapStep",
+          "schema": {
+            "$ref": "#/backend/entities/RoadmapStep"
+          },
+          "description": "Stores roadmap steps, which are available to all users.",
+          "params": [
+            {
+              "name": "stepId",
+              "description": "The unique identifier for the roadmap step."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed for a public-facing application without user-specific data. All collections are at the root level and publicly readable. This simplifies the data model as there's no need for user-based ownership rules."
+  }
+}
+    

@@ -1,0 +1,36 @@
+data:
+  folder: "DATA"
+  file_glob: "*.csv"
+
+train:
+  target: "AFRDifference"      # <-- CHANGE to what you want to optimize (latency/knock/afr_error/etc.)
+  direction: "minimize"        # minimize or maximize
+  test_size: 0.2
+  random_state: 42
+
+features:
+  drop_columns: ["Time"]       # Time is not numeric in this log
+  numeric_only: true
+
+tuning:
+  # Which columns the agent is allowed to change (your “knobs”)
+  tunable_params:
+    - "BaseFuel"
+    - "BaseIgnition"
+    - "IgnitionTiming"
+
+  # Step sizes for each knob (how aggressive changes are)
+  step_sizes:
+    BaseFuel: 5
+    BaseIgnition: 2
+    IgnitionTiming: 1
+
+  # bounds (safety / plausibility limits)
+  bounds:
+    BaseFuel: [0, 2000]
+    BaseIgnition: [0, 800]
+    IgnitionTiming: [-200, 600]
+
+  search:
+    num_candidates: 60
+    max_iters: 80
