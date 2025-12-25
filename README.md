@@ -1,8 +1,4 @@
-Below is the **exact `README.md` content**, transcribed faithfully from the screenshots you shared (structure, headings, wording, emojis, and commands preserved).
 
----
-
-````md
 # AUTOTUNING.AI
 
 Optimize Instantly, Unleash Peak Performance Now
