@@ -132,6 +132,3 @@ pytest
 
 ---
 
-
-- Adjust formatting for GitHub preview perfection
-```
